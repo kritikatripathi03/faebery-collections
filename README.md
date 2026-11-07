@@ -2,6 +2,8 @@
 
 A full stack MERN e-commerce application for a premium fashion brand. Built with React, Tailwind CSS, Node.js, Express and MongoDB.
 
+![CI](https://github.com/kritikatripathi03/fabery-collections/actions/workflows/ci.yml/badge.svg)
+
 ![FÄBERY Collections](https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80)
 
 ## 🌐 Live Demo
@@ -61,6 +63,7 @@ A full stack MERN e-commerce application for a premium fashion brand. Built with
 | Render | Backend hosting |
 | MongoDB Atlas | Cloud database |
 | GitHub | Version control |
+| GitHub Actions | CI pipeline: backend dependency install, frontend lint and build on every push and pull request |
 
 ---
 
@@ -162,6 +165,13 @@ The frontend Dockerfile uses two stages:
 - **Stage 2 (nginx):** Copies only the built `dist/` folder into Nginx
 
 This keeps the final image small — no Node.js runtime in production, just static files served by Nginx.
+
+### 9. CI Pipeline with GitHub Actions
+Every push and pull request to `main` runs two parallel jobs on Ubuntu:
+- **Backend:** `npm ci` for a reproducible install from the lockfile
+- **Frontend:** `npm ci`, ESLint, then `vite build`
+
+Running on Linux also catches case-sensitivity bugs that pass on Windows and macOS, such as the `Utils` vs `utils` import that broke the first Render deploy. The pipeline does not yet run API tests, so runtime regressions in route handlers are not caught. Adding Jest and Supertest is the next step.
 
 ---
 
@@ -353,8 +363,8 @@ docker-compose up --build
 - [ ] Rate limiting and Helmet security headers
 - [ ] httpOnly cookie based JWT (replacing localStorage)
 - [ ] Razorpay webhook for missed payment reconciliation
-- [ ] Jest + Supertest tests
-- [ ] GitHub Actions CI/CD pipeline
+- [x] GitHub Actions CI pipeline (lint and build)
+- [ ] Extend CI with API tests (Jest + Supertest)- [ ] GitHub Actions CI/CD pipeline
 - [ ] Product reviews and ratings
 - [ ] Pagination
 
