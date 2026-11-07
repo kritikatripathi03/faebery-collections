@@ -1,8 +1,6 @@
-# FÄBERY COLLECTIONS 🛍️
+# FÄBERY COLLECTIONS 🛍️ ![CI](https://github.com/kritikatripathi03/fabery-collections/actions/workflows/ci.yml/badge.svg)
 
 A full stack MERN e-commerce application for a premium fashion brand. Built with React, Tailwind CSS, Node.js, Express and MongoDB.
-
-![CI](https://github.com/kritikatripathi03/fabery-collections/actions/workflows/ci.yml/badge.svg)
 
 ![FÄBERY Collections](https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80)
 
